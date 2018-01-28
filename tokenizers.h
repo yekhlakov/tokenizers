@@ -72,7 +72,7 @@ namespace maxy
 		void restart () { it = 0; }; // restart internal iterator
 
 		size_t tokenize (const std::string & src);
-		const LineTokenizer & next_line ();
+		LineTokenizer & next_line ();
 	};
 }
 

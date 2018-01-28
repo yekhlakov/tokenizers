@@ -154,7 +154,7 @@ namespace maxy
 	}
 
 	// "null reference"
-	const LineTokenizer empty_line_tokenizer{};
+	LineTokenizer empty_line_tokenizer{};
 
 	size_t FileTokenizer::tokenize (const std::string & src)
 	{
@@ -179,7 +179,7 @@ namespace maxy
 		return end;
 	}
 
-	const LineTokenizer & FileTokenizer::next_line ()
+	LineTokenizer & FileTokenizer::next_line ()
 	{
 		if (!has_next ()) return empty_line_tokenizer;
 		return lines[it++];
