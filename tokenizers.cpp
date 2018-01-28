@@ -1,5 +1,9 @@
 #include "tokenizers.h"
 
+/**
+ * Nontrivial members for tokenizers
+ * maxy@maxy.ru
+ */
 namespace maxy
 {
 	size_t LineTokenizer::tokenize (const std::string & src)

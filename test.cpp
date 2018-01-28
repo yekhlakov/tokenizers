@@ -1,5 +1,8 @@
 #include "tokenizers_ostream.h"
 
+/**
+ * All stuff regarding line tokenizer
+ */
 void line_tokenizer_test ()
 {
 	std::cout << "\nLine tokenizer\n==============\n";
@@ -38,6 +41,9 @@ void line_tokenizer_test ()
 	std::cout << "\nNewline test\n" << lt5;
 }
 
+/**
+ * Everything about file tokenizer (not really much stuff here as it is even simpler than LineTokenizer)
+ */
 void file_tokenizer_test ()
 {
 	std::cout << "\nFile tokenizer\n==============\n";
@@ -68,6 +74,9 @@ void file_tokenizer_test ()
 	std::cout << "\nEmpty tokenizer (this should produce no output)" << ft2;
 }
 
+/** 
+ * Invoke the 'tests' and enjoy the stdout
+ */
 int main ()
 {
 	line_tokenizer_test ();

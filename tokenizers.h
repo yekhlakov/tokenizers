@@ -1,9 +1,15 @@
-#pragma once
+#ifndef MAXY_TOKENIZERS
+#define MAXY_TOKENIZERS
+
 #include <vector>
 #include <string>
 
 namespace maxy
 {
+	/**
+	 * Simple but powerful tokenizer for lines (i.e. single-line strings)
+	 * maxy@maxy.ru
+	 */
 	class LineTokenizer
 	{
 		std::vector<std::string> tokens;
@@ -38,6 +44,10 @@ namespace maxy
 		float next_float (float ref); // get next float with reference value
 	};
 
+	/**
+	 * Simple but powerful tokenizer for files (= for multiline strings)
+	 * maxy@maxy.ru
+	 */
 	class FileTokenizer
 	{
 		std::vector<LineTokenizer> lines;
@@ -65,3 +75,5 @@ namespace maxy
 		const LineTokenizer & next_line ();
 	};
 }
+
+#endif // MAXY_TOKENIZERS
