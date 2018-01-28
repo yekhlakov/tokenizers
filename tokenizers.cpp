@@ -111,18 +111,42 @@ namespace maxy
 		return tokens[it++];
 	}
 
+	int stoi_nothrow (const std::string & s)
+	{
+		try
+		{
+			return std::stoi (s, nullptr, 0);
+		}
+		catch (...)
+		{
+			return 0;
+		}
+	}
+
+	float stof_nothrow (const std::string & s)
+	{
+		try
+		{
+			return std::stof (s);
+		}
+		catch (...)
+		{
+			return 0;
+		}
+	}
+
 	int LineTokenizer::next_int ()
 	{
 		if (!has_next ()) return 0;
 
-		return std::stoi (tokens[it++]);
+		return stoi_nothrow (tokens[it++]);
 	}
 
 	int LineTokenizer::next_int (int ref)
 	{
 		if (!has_next ()) return 0;
 
-		int v = std::stoi (tokens[it]);
+		int v = stoi_nothrow (tokens[it]);
 
 		if (tokens[it][tokens[it].size () - 1] == '%')
 			v = int (v * ref * 0.01);
@@ -136,14 +160,14 @@ namespace maxy
 	{
 		if (!has_next ()) return 0;
 
-		return std::stof (tokens[it++]);
+		return stof_nothrow (tokens[it++]);
 	}
 
 	float LineTokenizer::next_float (float ref)
 	{
 		if (!has_next ()) return 0;
 
-		float v = std::stof (tokens[it]);
+		float v = stof_nothrow (tokens[it]);
 
 		if (tokens[it][tokens[it].size () - 1] == '%')
 			v = float (v * ref * 0.01);
