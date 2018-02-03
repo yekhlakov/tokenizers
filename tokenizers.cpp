@@ -1,9 +1,9 @@
 #include "tokenizers.h"
 
 /**
- * Nontrivial members for tokenizers
- * maxy@maxy.ru
- */
+* Nontrivial members for tokenizers
+* maxy@maxy.ru
+*/
 namespace maxy
 {
 	size_t LineTokenizer::tokenize (const std::string & src)
@@ -183,24 +183,48 @@ namespace maxy
 	size_t FileTokenizer::tokenize (const std::string & src)
 	{
 		clear ();
-
-		size_t end = 0;
+		size_t start{0};
+		size_t end{0};
 
 		while (end < src.size ())
 		{
-			LineTokenizer p{src.c_str () + end};
-			if (p)
-				lines.push_back (p);
-
 			while (end < src.size () && src[end] && src[end] != 0x0d && src[end] != 0x0a)
 				end++;
 
+			LineTokenizer p{std::string{src.c_str () + start, src.c_str () + end}};
+			if (p)
+				lines.push_back (p);
+
 			if (src[end] == 0x0d || src[end] == 0x0a)
 				end++;
+
+			start = end;
 		}
 
 		restart ();
 		return end;
+	}
+
+	std::vector<std::string> FileTokenizer::split (const std::string & src)
+	{
+		size_t start{0};
+		size_t end{0};
+		std::vector<std::string> ret;
+
+		while (end < src.size ())
+		{
+			while (end < src.size () && src[end] && src[end] != 0x0d && src[end] != 0x0a)
+				end++;
+
+			ret.push_back (std::string{src.c_str () + start, src.c_str () + end});
+
+			if (src[end] == 0x0d || src[end] == 0x0a)
+				end++;
+
+			start = end;
+		}
+
+		return ret;
 	}
 
 	LineTokenizer & FileTokenizer::next_line ()

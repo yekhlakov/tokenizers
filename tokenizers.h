@@ -73,6 +73,8 @@ namespace maxy
 
 		size_t tokenize (const std::string & src);
 		LineTokenizer & next_line ();
+
+		static std::vector<std::string> FileTokenizer::split (const std::string & src);
 	};
 }
 
